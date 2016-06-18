@@ -1,0 +1,16 @@
+diff a/CoScProject/Form1.Designer.cs b/CoScProject/Form1.Designer.cs	(rejected hunks)
+@@ -61,12 +61,14 @@
+             this.button1 = new System.Windows.Forms.Button();
+             this.gdvDetailsInventory = new System.Windows.Forms.DataGridView();
+             this.tabPage4 = new System.Windows.Forms.TabPage();
++            this.btnClearReport = new System.Windows.Forms.Button();
+             this.reportViewerDispatched = new Microsoft.Reporting.WinForms.ReportViewer();
+             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+             this.COSCREPORTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+             this.DataSetRpts = new CoScProject.DataSetRpts();
+             this.COSCREPORTSTableAdapter = new CoScProject.DataSetRptsTableAdapters.COSCREPORTSTableAdapter();
+             this.cOSCREPORTSTableAdapter1 = new CoScProject.COSCDataSetTableAdapters.COSCREPORTSTableAdapter();
++            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+             ((System.ComponentModel.ISupportInitialize)(this.cOSCREPORTSBindingSource1)).BeginInit();
+             ((System.ComponentModel.ISupportInitialize)(this.cOSCDataSet)).BeginInit();
+             this.tabControl1.SuspendLayout();

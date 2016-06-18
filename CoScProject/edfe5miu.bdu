@@ -1,0 +1,173 @@
+﻿namespace CoScProject
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gdvProductdetails = new System.Windows.Forms.DataGridView();
+            this.btnGetOrderDetails = new System.Windows.Forms.Button();
+            this.txtBarcodeId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvProductdetails)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(13, 13);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(747, 476);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Indigo;
+            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage1.ForeColor = System.Drawing.Color.White;
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(739, 450);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Generate Sticker";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.gdvProductdetails);
+            this.tabPage2.Controls.Add(this.btnGetOrderDetails);
+            this.tabPage2.Controls.Add(this.txtBarcodeId);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(739, 450);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Barcode Scanning";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // gdvProductdetails
+            // 
+            this.gdvProductdetails.BackgroundColor = System.Drawing.Color.White;
+            this.gdvProductdetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.gdvProductdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gdvProductdetails.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.gdvProductdetails.Location = new System.Drawing.Point(17, 50);
+            this.gdvProductdetails.Name = "gdvProductdetails";
+            this.gdvProductdetails.Size = new System.Drawing.Size(704, 150);
+            this.gdvProductdetails.TabIndex = 13;
+            // 
+            // btnGetOrderDetails
+            // 
+            this.btnGetOrderDetails.Location = new System.Drawing.Point(215, 10);
+            this.btnGetOrderDetails.Name = "btnGetOrderDetails";
+            this.btnGetOrderDetails.Size = new System.Drawing.Size(100, 23);
+            this.btnGetOrderDetails.TabIndex = 2;
+            this.btnGetOrderDetails.Text = "Get Order Details";
+            this.btnGetOrderDetails.UseVisualStyleBackColor = true;
+            this.btnGetOrderDetails.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtBarcodeId
+            // 
+            this.txtBarcodeId.Location = new System.Drawing.Point(98, 13);
+            this.txtBarcodeId.Name = "txtBarcodeId";
+            this.txtBarcodeId.Size = new System.Drawing.Size(100, 20);
+            this.txtBarcodeId.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Barcode ID";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(739, 450);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Data Purge";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 220);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 14;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(782, 517);
+            this.Controls.Add(this.tabControl1);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvProductdetails)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnGetOrderDetails;
+        private System.Windows.Forms.TextBox txtBarcodeId;
+        private System.Windows.Forms.DataGridView gdvProductdetails;
+        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Label label2;
+    }
+}
+

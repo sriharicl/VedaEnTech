@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Barcodes" targetNamespace="http://tempuri.org/Barcodes.xsd" xmlns:mstns="http://tempuri.org/Barcodes.xsd" xmlns="http://tempuri.org/Barcodes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Barcodes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Barcodes" msprop:Generator_UserDSName="Barcodes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Barcodes" msprop:Generator_TableClassName="BarcodesDataTable" msprop:Generator_TableVarName="tableBarcodes" msprop:Generator_TablePropName="_Barcodes" msprop:Generator_RowDeletingName="BarcodesRowDeleting" msprop:Generator_RowChangingName="BarcodesRowChanging" msprop:Generator_RowEvHandlerName="BarcodesRowChangeEventHandler" msprop:Generator_RowDeletedName="BarcodesRowDeleted" msprop:Generator_UserTableName="Barcodes" msprop:Generator_RowChangedName="BarcodesRowChanged" msprop:Generator_RowEvArgName="BarcodesRowChangeEvent" msprop:Generator_RowClassName="BarcodesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_UserColumnName="ProjectName" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNo" msprop:Generator_ColumnVarNameInTable="columnJobNo" msprop:Generator_ColumnPropNameInRow="JobNo" msprop:Generator_ColumnPropNameInTable="JobNoColumn" msprop:Generator_UserColumnName="JobNo" type="xs:string" minOccurs="0" />
+              <xs:element name="SerialNo" msprop:Generator_ColumnVarNameInTable="columnSerialNo" msprop:Generator_ColumnPropNameInRow="SerialNo" msprop:Generator_ColumnPropNameInTable="SerialNoColumn" msprop:Generator_UserColumnName="SerialNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ItemDescription" msprop:Generator_ColumnVarNameInTable="columnItemDescription" msprop:Generator_ColumnPropNameInRow="ItemDescription" msprop:Generator_ColumnPropNameInTable="ItemDescriptionColumn" msprop:Generator_UserColumnName="ItemDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="W" msprop:Generator_ColumnVarNameInTable="columnW" msprop:Generator_ColumnPropNameInRow="W" msprop:Generator_ColumnPropNameInTable="WColumn" msprop:Generator_UserColumnName="W" type="xs:string" minOccurs="0" />
+              <xs:element name="H" msprop:Generator_ColumnVarNameInTable="columnH" msprop:Generator_ColumnPropNameInRow="H" msprop:Generator_ColumnPropNameInTable="HColumn" msprop:Generator_UserColumnName="H" type="xs:string" minOccurs="0" />
+              <xs:element name="W1" msprop:Generator_ColumnVarNameInTable="columnW1" msprop:Generator_ColumnPropNameInRow="W1" msprop:Generator_ColumnPropNameInTable="W1Column" msprop:Generator_UserColumnName="W1" type="xs:string" minOccurs="0" />
+              <xs:element name="H1" msprop:Generator_ColumnVarNameInTable="columnH1" msprop:Generator_ColumnPropNameInRow="H1" msprop:Generator_ColumnPropNameInTable="H1Column" msprop:Generator_UserColumnName="H1" type="xs:string" minOccurs="0" />
+              <xs:element name="Guage" msprop:Generator_ColumnVarNameInTable="columnGuage" msprop:Generator_ColumnPropNameInRow="Guage" msprop:Generator_ColumnPropNameInTable="GuageColumn" msprop:Generator_UserColumnName="Guage" type="xs:string" minOccurs="0" />
+              <xs:element name="Barcode" msprop:Generator_ColumnVarNameInTable="columnBarcode" msprop:Generator_ColumnPropNameInRow="Barcode" msprop:Generator_ColumnPropNameInTable="BarcodeColumn" msprop:Generator_UserColumnName="Barcode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

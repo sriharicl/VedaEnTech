@@ -1,0 +1,40 @@
+E:\Projects\CoScProject\CoScProject\bin\Debug\CoScProject.exe.config
+E:\Projects\CoScProject\CoScProject\bin\Debug\CoScProject.exe
+E:\Projects\CoScProject\CoScProject\bin\Debug\CoScProject.pdb
+E:\Projects\CoScProject\CoScProject\bin\Debug\Neodynamic.SDK.BarcodeReader.dll
+E:\Projects\CoScProject\CoScProject\obj\Debug\CoScProject.Form1.resources
+E:\Projects\CoScProject\CoScProject\obj\Debug\CoScProject.Properties.Resources.resources
+E:\Projects\CoScProject\CoScProject\obj\Debug\CoScProject.csproj.GenerateResource.Cache
+E:\Projects\CoScProject\CoScProject\obj\Debug\CoScProject.exe
+E:\Projects\CoScProject\CoScProject\obj\Debug\CoScProject.pdb
+E:\Projects\CoScProject\CoScProject\obj\Debug\CoScProject.csprojResolveAssemblyReference.cache
+E:\Projects\CoScProject\CoScProject\obj\Debug\RdlCompile.cache
+E:\Projects\CoScProject\CoScProject\obj\Debug\RdlCompile.compiled
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\bin\Debug\CoScProject.exe.config
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.exe
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.pdb
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.csprojResolveAssemblyReference.cache
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.Form1.resources
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.Properties.Resources.resources
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.csproj.GenerateResource.Cache
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\RdlCompile.cache
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\RdlCompile.compiled
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\bin\Debug\CoScProject.exe
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\bin\Debug\CoScProject.pdb
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\bin\Debug\Neodynamic.SDK.BarcodeReader.dll
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\bin\Debug\CoScProject.exe.manifest
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\bin\Debug\CoScProject.application
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.exe.manifest
+C:\Users\sri\Documents\VedaEnTech - Barcode generator and scanner\CoScProject_28May\CoScProject\CoScProject\obj\Debug\CoScProject.application
+C:\Users\sri\Documents\Git Repositories\CoScProject\bin\Debug\CoScProject.exe.config
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\CoScProject.exe
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\CoScProject.pdb
+C:\Users\sri\Documents\Git Repositories\CoScProject\bin\Debug\CoScProject.exe
+C:\Users\sri\Documents\Git Repositories\CoScProject\bin\Debug\CoScProject.pdb
+C:\Users\sri\Documents\Git Repositories\CoScProject\bin\Debug\Neodynamic.SDK.BarcodeReader.dll
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\CoScProject.csprojResolveAssemblyReference.cache
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\CoScProject.Form1.resources
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\CoScProject.Properties.Resources.resources
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\CoScProject.csproj.GenerateResource.Cache
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\RdlCompile.cache
+C:\Users\sri\Documents\Git Repositories\CoScProject\obj\Debug\RdlCompile.compiled
