@@ -1,5 +1,4 @@
 ﻿using Microsoft.Reporting.WinForms;
-using Neodynamic.SDK.BarcodeReader;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,17 +27,13 @@ namespace CoScProject
         private string reportNumber;
         private int[] scannedBarcodeIds;
         private string oldBarcodeID = "";
-
         int i = 1;
         int k = 0;
+        bool incrementNoOfScans = false;
         int noOfScans = 0;
         int rowC = 0;
         Dictionary<int, int> dictionary = new Dictionary<int, int>();
-
         public int noofScans = 0;
-
-
-
         //form initiation: Loads all components that are needed.
         public Form1()
         {
@@ -127,15 +122,12 @@ namespace CoScProject
             //_serialPort.Open();
 
         }
-
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
             txtBarcodeId.Text = indata;
         }
-
-
         //Get Details Button
         private void button1_Click(object sender, EventArgs e)
         {
@@ -172,184 +164,187 @@ namespace CoScProject
                     commProductDetails.CommandType = CommandType.StoredProcedure;
                     commProductDetails.Parameters.AddWithValue("@barcodeId", barcodeID);
                     commProductDetails.Parameters.AddWithValue("@JobNo", cmbJobNo.Text);
-                    SqlDataAdapter dataAdapterFillSpecificDetails = new SqlDataAdapter();
-                    dataAdapterFillSpecificDetails.SelectCommand = commProductDetails;
-                    dataAdapterFillSpecificDetails.Fill(tableFillSpecificDetails);
-
-                    //The data set is empty : for a job there is no product matching with the barcode id - Throw a error message
-                    if (tableFillSpecificDetails.Rows.Count == 0)
+                    commProductDetails.Parameters.Add("@isDataExists", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    commProductDetails.ExecuteNonQuery();
+                    int isDataExists = Convert.ToInt32(commProductDetails.Parameters["@isDataExists"].Value);
+                    if (isDataExists == 1)
                     {
-                        MessageBox.Show("Sorry! No matching details found. Please check the Jobno and barcode id.");
-                        firstScan--;
-                    }
-                    // the scan when it contains job number other than selected job number
+                        incrementNoOfScans = true;
 
-                    //else if (Convert.ToString(tableFillSpecificDetails.Rows[noOfScans][1])!=cmbJobNo.Text)
-                    //{
-                    //    MessageBox.Show("Current Job is currently being scanned");
-                    //}
-                    else
-                    {
-                        if (firstScan < 2)
+                        SqlDataAdapter dataAdapterFillSpecificDetails = new SqlDataAdapter();
+                        dataAdapterFillSpecificDetails.SelectCommand = commProductDetails;
+                        dataAdapterFillSpecificDetails.Fill(tableFillSpecificDetails);
+
+                        //The data set is empty : for a job there is no product matching with the barcode id - Throw a error message
+                        if (tableFillSpecificDetails.Rows.Count == 0)
                         {
-                            gdvProductdetails.Columns.Add("barcodeid", "Id");
-                            gdvProductdetails.Columns.Add("jobno", "Job");
-                            gdvProductdetails.Columns.Add("projectname", "Project");
-                            gdvProductdetails.Columns.Add("customer", "Customer");
-                            gdvProductdetails.Columns.Add("area", "Area");
-                            gdvProductdetails.Columns.Add("serialno", "S.No");
-                            gdvProductdetails.Columns.Add("itemdescription", "Description");
-                            gdvProductdetails.Columns.Add("w", "Width");
-                            gdvProductdetails.Columns.Add("h", "Height");
-                            gdvProductdetails.Columns.Add("w1", "Width1");
-                            gdvProductdetails.Columns.Add("h1", "Height1");
-                            gdvProductdetails.Columns.Add("length", "Length");
-                            gdvProductdetails.Columns.Add("numberofunits", "No.units");
-                            gdvProductdetails.Columns.Add("gauge", "Gauge");
-                            gdvProductdetails.Columns.Add("uom", "Uom");
-                            gdvProductdetails.Columns.Add("unitquantity", "UnitQuantity");
-                            gdvProductdetails.Columns.Add("totalquantity", "TotalQuantity");
-                            gdvProductdetails.Columns.Add("inventory", "inventory");
-
-
-                            //
-                            tableforReports.Columns.Add("reportnumber", typeof(String));
-                            tableforReports.Columns.Add("vehiclenumber", typeof(String));
-                            tableforReports.Columns.Add("reportdate", typeof(DateTime));
-                            tableforReports.Columns.Add("barcodeid", typeof(Int32));
-                            tableforReports.Columns.Add("jobno", typeof(String));
-                            tableforReports.Columns.Add("projectname", typeof(String));
-                            tableforReports.Columns.Add("customer", typeof(String));
-                            tableforReports.Columns.Add("area", typeof(String));
-                            tableforReports.Columns.Add("serialno", typeof(String));
-                            tableforReports.Columns.Add("itemdescription", typeof(String));
-                            tableforReports.Columns.Add("w", typeof(Int32));
-                            tableforReports.Columns.Add("h", typeof(Int32));
-                            tableforReports.Columns.Add("w1", typeof(Int32));
-                            tableforReports.Columns.Add("h1", typeof(Int32));
-                            tableforReports.Columns.Add("length", typeof(Int32));
-                            tableforReports.Columns.Add("numberofunits", typeof(Int32));
-                            tableforReports.Columns.Add("gauge", typeof(Int32));
-                            tableforReports.Columns.Add("uom", typeof(String));
-                            tableforReports.Columns.Add("unitquantity", typeof(Double));
-                            tableforReports.Columns.Add("totalquantity", typeof(Double));
-                            tableforReports.Columns.Add("seqno", typeof(Int32));
-
-
+                            MessageBox.Show("Sorry! No matching details found. Please check the Jobno and barcode id.");
+                            firstScan--;
                         }
+                        // the scan when it contains job number other than selected job number
 
-                        //index check for multiple
-                        int i = 0;
-                        Dictionary<int,int> dictionary =  new Dictionary<int, int>();
-
-                        dictionary.Add(i, Convert.ToInt32(barcodeID));
-                        
-                        //add condition to to enable different barcode id scans
-                        //DataRow dr = tableFillSpecificDetails.Rows[noofScans];
-                        //noofScans++;
-
-                       //if(barcodeID == oldBarcodeID)
-                       //    avoidDuplicateDetails();
-
-
-                        DataRow dr = tableFillSpecificDetails.Rows[noOfScans];
-                        if (oldBarcodeID != "" && barcodeID != oldBarcodeID || !dictionary.ContainsKey(Convert.ToInt32(barcodeID)))
+                        //else if (Convert.ToString(tableFillSpecificDetails.Rows[noOfScans][1])!=cmbJobNo.Text)
+                        //{
+                        //    MessageBox.Show("Current Job is currently being scanned");
+                        //}
+                        else
                         {
-                            if (!dictionary.ContainsKey(Convert.ToInt32(barcodeID)))
+                            if (firstScan < 2)
                             {
-                                dictionary.Add(Convert.ToInt32(barcodeID), rowC);
-                                rowC = rowC + 1;
+                                gdvProductdetails.Columns.Add("barcodeid", "Id");
+                                gdvProductdetails.Columns.Add("jobno", "Job");
+                                gdvProductdetails.Columns.Add("projectname", "Project");
+                                gdvProductdetails.Columns.Add("customer", "Customer");
+                                gdvProductdetails.Columns.Add("area", "Area");
+                                gdvProductdetails.Columns.Add("serialno", "S.No");
+                                gdvProductdetails.Columns.Add("itemdescription", "Description");
+                                gdvProductdetails.Columns.Add("w", "Width");
+                                gdvProductdetails.Columns.Add("h", "Height");
+                                gdvProductdetails.Columns.Add("w1", "Width1");
+                                gdvProductdetails.Columns.Add("h1", "Height1");
+                                gdvProductdetails.Columns.Add("length", "Length");
+                                gdvProductdetails.Columns.Add("numberofunits", "No.units");
+                                gdvProductdetails.Columns.Add("gauge", "Gauge");
+                                gdvProductdetails.Columns.Add("uom", "Uom");
+                                gdvProductdetails.Columns.Add("unitquantity", "UnitQuantity");
+                                gdvProductdetails.Columns.Add("totalquantity", "TotalQuantity");
+                                gdvProductdetails.Columns.Add("inventory", "inventory");
+
+
+
+                                tableforReports.Columns.Add("reportnumber", typeof(String));
+                                tableforReports.Columns.Add("vehiclenumber", typeof(String));
+                                tableforReports.Columns.Add("reportdate", typeof(DateTime));
+                                tableforReports.Columns.Add("barcodeid", typeof(Int32));
+                                tableforReports.Columns.Add("jobno", typeof(String));
+                                tableforReports.Columns.Add("projectname", typeof(String));
+                                tableforReports.Columns.Add("customer", typeof(String));
+                                tableforReports.Columns.Add("area", typeof(String));
+                                tableforReports.Columns.Add("serialno", typeof(String));
+                                tableforReports.Columns.Add("itemdescription", typeof(String));
+                                tableforReports.Columns.Add("w", typeof(Int32));
+                                tableforReports.Columns.Add("h", typeof(Int32));
+                                tableforReports.Columns.Add("w1", typeof(Int32));
+                                tableforReports.Columns.Add("h1", typeof(Int32));
+                                tableforReports.Columns.Add("length", typeof(Int32));
+                                tableforReports.Columns.Add("numberofunits", typeof(Int32));
+                                tableforReports.Columns.Add("gauge", typeof(Int32));
+                                tableforReports.Columns.Add("uom", typeof(String));
+                                tableforReports.Columns.Add("unitquantity", typeof(Double));
+                                tableforReports.Columns.Add("totalquantity", typeof(Double));
+                                tableforReports.Columns.Add("seqno", typeof(Int32));
+
+
+                            }
+
+                            DataRow dr = tableFillSpecificDetails.Rows[noOfScans];
+                            if (oldBarcodeID != "" && barcodeID != oldBarcodeID || !dictionary.ContainsKey(Convert.ToInt32(barcodeID)))
+                            {
+                                if (!dictionary.ContainsKey(Convert.ToInt32(barcodeID)))
                                 {
-                                    //if (barcodeID != oldBarcodeID)
+                                    dictionary.Add(Convert.ToInt32(barcodeID), rowC);
+                                    rowC = rowC + 1;
                                     {
-                                        gdvProductdetails.Rows.Add(
-                                        dr[0].ToString(),
-                                        dr[1].ToString(),
-                                        dr[2].ToString(),
-                                        dr[3].ToString(),
-                                        dr[4].ToString(),
-                                        dr[5].ToString(),
-                                        dr[6].ToString(),
-                                        dr[7].ToString(),
-                                        dr[8].ToString(),
-                                        dr[9].ToString(),
-                                        dr[10].ToString(),
-                                        dr[11].ToString(),
-                                        dr[12].ToString(),
-                                        dr[13].ToString(),
-                                        dr[14].ToString(),
-                                        dr[15].ToString(),
-                                        dr[16].ToString(),
-                                        dr[17].ToString()
-
-                                        );
-
-                                        CoscDAL _coscDal = new CoscDAL();
-                                        int maxNo = _coscDal.getMaxReportNumber();
-
-                                        //generate Number
-
-                                        reportNumber = "COSC" + maxNo + "RPT";
-
-                                        string vehicleNumber = txtVehicleNo.Text;
-                                        DateTime dateNow = DateTime.Now.Date;
-                                        tableforReports.Rows.Add(
-                                        reportNumber,
-                                        vehicleNumber,
-                                        dateNow,
-                                        Convert.ToString(dr[0]),
-                                        Convert.ToString(dr[1]),
-                                        Convert.ToString(dr[2]),
-                                        Convert.ToString(dr[3]),
-                                        Convert.ToString(dr[4]),
-                                        Convert.ToString(dr[5]),
-                                        Convert.ToString(dr[6]),
-                                        Convert.ToString(dr[7]) == string.Empty ? 0 : Convert.ToInt32(dr[7]),
-                                        Convert.ToString(dr[8]) == string.Empty ? 0 : Convert.ToInt32(dr[8]),
-                                        Convert.ToString(dr[9]) == string.Empty ? 0 : Convert.ToInt32(dr[9]),
-                                        Convert.ToString(dr[10]) == string.Empty ? 0 : Convert.ToInt32(dr[10]),
-                                        Convert.ToString(dr[11]) == string.Empty ? 0 : Convert.ToInt32(dr[11]),
-                                        Convert.ToString(dr[12]) == string.Empty ? 0 : Convert.ToInt32(dr[12]),
-                                        Convert.ToString(dr[13]) == string.Empty ? 0 : Convert.ToInt32(dr[13]),
-                                        Convert.ToString(dr[14]),
-                                        Convert.ToString(dr[15]),
-                                        Convert.ToString(dr[16]), maxNo);
-                                        tableforReports.AcceptChanges();
-
-                                        int columnCount = gdvProductdetails.Columns.Count;
-
-                                        for (int j = 0; j < columnCount; j++)
+                                        //if (barcodeID != oldBarcodeID)
                                         {
-                                            gdvProductdetails.Columns[j].ReadOnly = true;
+                                            gdvProductdetails.Rows.Add(
+                                            dr[0].ToString(),
+                                            dr[1].ToString(),
+                                            dr[2].ToString(),
+                                            dr[3].ToString(),
+                                            dr[4].ToString(),
+                                            dr[5].ToString(),
+                                            dr[6].ToString(),
+                                            dr[7].ToString(),
+                                            dr[8].ToString(),
+                                            dr[9].ToString(),
+                                            dr[10].ToString(),
+                                            dr[11].ToString(),
+                                            dr[12].ToString(),
+                                            dr[13].ToString(),
+                                            dr[14].ToString(),
+                                            dr[15].ToString(),
+                                            dr[16].ToString(),
+                                            dr[17].ToString()
 
+                                            );
+
+                                            CoscDAL _coscDal = new CoscDAL();
+                                            int maxNo = _coscDal.getMaxReportNumber();
+
+                                            //generate Number
+
+                                            reportNumber = "COSC" + maxNo + "RPT";
+
+                                            string vehicleNumber = txtVehicleNo.Text;
+                                            DateTime dateNow = DateTime.Now.Date;
+                                            tableforReports.Rows.Add(
+                                            reportNumber,
+                                            vehicleNumber,
+                                            dateNow,
+                                            Convert.ToString(dr[0]),
+                                            Convert.ToString(dr[1]),
+                                            Convert.ToString(dr[2]),
+                                            Convert.ToString(dr[3]),
+                                            Convert.ToString(dr[4]),
+                                            Convert.ToString(dr[5]),
+                                            Convert.ToString(dr[6]),
+                                            Convert.ToString(dr[7]) == string.Empty ? 0 : Convert.ToInt32(dr[7]),
+                                            Convert.ToString(dr[8]) == string.Empty ? 0 : Convert.ToInt32(dr[8]),
+                                            Convert.ToString(dr[9]) == string.Empty ? 0 : Convert.ToInt32(dr[9]),
+                                            Convert.ToString(dr[10]) == string.Empty ? 0 : Convert.ToInt32(dr[10]),
+                                            Convert.ToString(dr[11]) == string.Empty ? 0 : Convert.ToInt32(dr[11]),
+                                            Convert.ToString(dr[12]) == string.Empty ? 0 : Convert.ToInt32(dr[12]),
+                                            Convert.ToString(dr[13]) == string.Empty ? 0 : Convert.ToInt32(dr[13]),
+                                            Convert.ToString(dr[14]),
+                                            Convert.ToString(dr[15]),
+                                            Convert.ToString(dr[16]), maxNo);
+                                            tableforReports.AcceptChanges();
+
+                                            int columnCount = gdvProductdetails.Columns.Count;
+
+                                            for (int j = 0; j < columnCount; j++)
+                                            {
+                                                gdvProductdetails.Columns[j].ReadOnly = true;
+
+                                            }
+                                            gdvProductdetails.Columns[0].Visible = false;
+
+                                            //resize the data grid after loading the data
+                                            gdvProductdetails.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                                         }
-                                        gdvProductdetails.Columns[0].Visible = false;
 
-                                        //resize the data grid after loading the data
-                                        gdvProductdetails.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                                     }
+                                }
+                                else
+                                {
+                                    int value1;
+                                    dictionary.TryGetValue(Convert.ToInt32(barcodeID), out value1);
+                                    incrementQuantity(value1);
 
                                 }
+
                             }
                             else
                             {
-                                int value1;
-                                dictionary.TryGetValue(Convert.ToInt32(barcodeID), out value1);
-                                incrementQuantity(value1);
+                                int value;
+                                dictionary.TryGetValue(Convert.ToInt32(barcodeID), out value);
+                                incrementQuantity(value);
 
                             }
-                            
                         }
-                        else
-                        {
-                            // dictionary.Add(Convert.ToInt32(barcodeID), rowC);
-                            int value;
-                            dictionary.TryGetValue(Convert.ToInt32(barcodeID), out value);
-                            incrementQuantity(value);
-
-                        }
+                    }
+                    else
+                    {
+                        incrementNoOfScans = false;
+                    }
+                    if (incrementNoOfScans == true)
+                    {
                         noOfScans += 1;
-
+                    }
+                    else
+                    {
+                        MessageBox.Show("Current job in progress");
                     }
 
                 }
@@ -361,7 +356,7 @@ namespace CoScProject
             }
             catch (Exception e)
             {
-                 MessageBox.Show(e.ToString());
+                MessageBox.Show(e.ToString());
             }
             oldBarcodeID = txtBarcodeId.Text;
 
@@ -551,7 +546,6 @@ namespace CoScProject
                 }
             }
         }
-
         private void createPdf(byte[] mybytes, string reportNumber)
         {
             if (!Directory.Exists(pdfPath))
@@ -575,9 +569,7 @@ namespace CoScProject
         {
             cmbJobNo.Enabled = false;
         }
-
         //this will enable the job dropdown.
-
         private void btnChangeJob_Click(object sender, EventArgs e)
         {
             cmbJobNo.Enabled = true;
@@ -600,8 +592,6 @@ namespace CoScProject
             gdvDetailsInventory.DataSource = dtInventory;
 
         }
-
-
         private void Generate_Click(object sender, EventArgs e)
         {
             Barcodes barcodeDetails = new Barcodes();
@@ -696,10 +686,6 @@ namespace CoScProject
                 MessageBox.Show(ex.Message);
             }
         }
-       
-
-      
-
         private void btnClearReport_Click(object sender, EventArgs e)
         {
             btnClearReport.Enabled = false;
@@ -707,9 +693,8 @@ namespace CoScProject
             tableforReports.Clear();
             tableFillSpecificDetails.Clear();
             reportViewerDispatched.RefreshReport();
+            reportViewerDispatched.ResetText();
 
         }
-
-
     }
 }
