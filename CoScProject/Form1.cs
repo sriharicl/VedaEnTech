@@ -636,7 +636,7 @@ namespace CoScProject
                     {
                         //dr.BeginEdit();
                         int toCreate = Convert.ToInt32(dr["Quantity"]);
-                        for (int i = 0; i < toCreate - 1; i++)
+                        for (int i = 0; i < toCreate; i++)
                         {
                             DataRow manipulatedDatarow = manipulatedDataTable.NewRow();
                             manipulatedDatarow["CustomerName"] = dr["CustomerName"];
@@ -649,9 +649,9 @@ namespace CoScProject
                             manipulatedDatarow["W1"] = dr["W1"];
                             manipulatedDatarow["H1"] = dr["H1"];
                             manipulatedDatarow["Guage"] = dr["Guage"];
-                            manipulatedDatarow["Barcode"] = "*";
-                            manipulatedDatarow["Barcode"] = dr["Barcode"];
-                            manipulatedDatarow["Barcode"] = "*";
+                            //manipulatedDatarow["Barcode"] = "*";
+                            manipulatedDatarow["Barcode"] = "*"+Convert.ToInt32(dr["Barcode"])+"*";
+                            
                             manipulatedDataTable.Rows.Add(manipulatedDatarow);
 
                         }
@@ -669,9 +669,9 @@ namespace CoScProject
                         manipulatedDatarow1["W1"] = dr["W1"];
                         manipulatedDatarow1["H1"] = dr["H1"];
                         manipulatedDatarow1["Guage"] = dr["Guage"];
-                        manipulatedDatarow1["Barcode"] = "*";
-                        manipulatedDatarow1["Barcode"] = dr["Barcode"];
-                        manipulatedDatarow1["Barcode"] = "*";
+                        
+                        manipulatedDatarow1["Barcode"] = "*"+dr["Barcode"]+"*";
+                        
                         manipulatedDataTable.Rows.Add(manipulatedDatarow1);
                     }
                 }
