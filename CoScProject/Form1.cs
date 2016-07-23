@@ -17,7 +17,7 @@ namespace CoScProject
 {
     public partial class Form1 : Form
     {
-
+        private int flag = 0;
         private static string coscConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["VedConnections"].ConnectionString;
         string getSpecificProductCommand = "";
         public int firstScan = 0;
@@ -62,6 +62,7 @@ namespace CoScProject
         //Load the job numbers in the dropdown.
         private void Form1_Load(object sender, EventArgs e)
         {
+            KeyPreview = true;
             SqlConnection con = new SqlConnection();
             con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["VedConnections"].ConnectionString;
             con.Open();
@@ -131,19 +132,7 @@ namespace CoScProject
         //Get Details Button
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtVehicleNo.Text == "")
-            {
-                errorProvider1.SetError(txtVehicleNo, "Enter Vehicle No.");
-                MessageBox.Show("Enter Vehicle No.");
-            }
-            else
-            {
-                errorProvider1.Clear();
-                string barcodeID = txtBarcodeId.Text;
-                firstScan += 1;
-                FillData(barcodeID);
-            }
-
+            
 
 
         }
@@ -153,9 +142,10 @@ namespace CoScProject
             //  dictionary.Add(Convert.ToInt32(barcodeID), i);
             try
             {
-
+                if(barcodeID == string.Empty)
+                barcodeID = txtBarcodeId.Text;
                 //load data into the gridview
-                if (barcodeID != null && barcodeID != "")
+                if (barcodeID != string.Empty || gdvProductdetails.Rows.Count == 0)
                 {
 
                     SqlConnection connProductDetails = new SqlConnection(coscConnectionString);
@@ -346,19 +336,21 @@ namespace CoScProject
                     {
                         MessageBox.Show("Current job in progress");
                     }
-
+                    
                 }
                 else
                 {
                     MessageBox.Show("Please check and re-enter the barcode");
                     firstScan--;
                 }
+                
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
             oldBarcodeID = txtBarcodeId.Text;
+            txtBarcodeId.Text = string.Empty;
 
 
         }
@@ -398,7 +390,7 @@ namespace CoScProject
                 using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
                 {
                     //Set the database table name
-                    if (txtBarcodeId.Text != null && txtBarcodeId.Text != "")
+                    if (txtBarcodeId.Text != string.Empty || gdvProductdetails.Rows.Count != 0)
                     {
 
                         sqlBulkCopy.DestinationTableName = "COSCREPORTS";
@@ -695,6 +687,57 @@ namespace CoScProject
             reportViewerDispatched.RefreshReport();
             reportViewerDispatched.ResetText();
 
+        }
+
+        private void txtBarcodeId_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void txtBarcodeId_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void txtBarcodeId_Leave(object sender, EventArgs e)
+        {
+            
+                //if (txtVehicleNo.Text == "")
+                //{
+                //    errorProvider1.SetError(txtVehicleNo, "Enter Vehicle No.");
+                //    MessageBox.Show("Enter Vehicle No.");
+                //}
+                //else
+                //{
+                //    errorProvider1.Clear();
+                //    string barcodeID = txtBarcodeId.Text;
+                //    firstScan += 1;
+                //    if(flag!=1)
+                //    FillData(barcodeID);
+                //}
+            
+        }
+
+        private void txtBarcodeId_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+                if (e.KeyCode == Keys.Tab)
+            {
+                if (txtVehicleNo.Text == "")
+                {
+                    errorProvider1.SetError(txtVehicleNo, "Enter Vehicle No.");
+                    MessageBox.Show("Enter Vehicle No.");
+                }
+                else
+                {
+                    errorProvider1.Clear();
+                    string barcodeID = txtBarcodeId.Text;
+                    firstScan += 1;
+                    if (flag != 1)
+                        FillData(barcodeID);
+                }
+
+            }
         }
     }
 }

@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.cOSCREPORTSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cOSCDataSet = new CoScProject.COSCDataSet();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.BarcodeReport1 = new CoScProject.BarcodeReport();
             this.Generate = new System.Windows.Forms.Button();
             this.ddlJobList = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,11 +73,7 @@
             this.DataSetRpts = new CoScProject.DataSetRpts();
             this.COSCREPORTSTableAdapter = new CoScProject.DataSetRptsTableAdapters.COSCREPORTSTableAdapter();
             this.cOSCREPORTSTableAdapter1 = new CoScProject.COSCDataSetTableAdapters.COSCREPORTSTableAdapter();
-
-            this.BarcodeReport1 = new CoScProject.BarcodeReport();
-
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-
             ((System.ComponentModel.ISupportInitialize)(this.cOSCREPORTSBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cOSCDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -142,7 +139,7 @@
             this.crystalReportViewer1.Location = new System.Drawing.Point(-2, 54);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ReportSource = this.BarcodeReport1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1280,600);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1280, 600);
             this.crystalReportViewer1.TabIndex = 3;
             // 
             // Generate
@@ -250,6 +247,10 @@
             this.txtBarcodeId.Name = "txtBarcodeId";
             this.txtBarcodeId.Size = new System.Drawing.Size(100, 20);
             this.txtBarcodeId.TabIndex = 1;
+            this.txtBarcodeId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcodeId_KeyDown);
+            this.txtBarcodeId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBarcodeId_KeyUp);
+            this.txtBarcodeId.Leave += new System.EventHandler(this.txtBarcodeId_Leave);
+            this.txtBarcodeId.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBarcodeId_PreviewKeyDown);
             // 
             // label3
             // 
@@ -461,9 +462,9 @@
             // 
             // reportViewerDispatched
             // 
-            reportDataSource4.Name = "DataSet1";
-            reportDataSource4.Value = this.cOSCREPORTSBindingSource1;
-            this.reportViewerDispatched.LocalReport.DataSources.Add(reportDataSource4);
+            reportDataSource3.Name = "DataSet1";
+            reportDataSource3.Value = this.cOSCREPORTSBindingSource1;
+            this.reportViewerDispatched.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewerDispatched.LocalReport.ReportEmbeddedResource = "CoScProject.VedaReport.rdlc";
             this.reportViewerDispatched.LocalReport.ReportPath = "VedaReport.rdlc";
             this.reportViewerDispatched.Location = new System.Drawing.Point(33, 23);

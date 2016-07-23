@@ -1,0 +1,16 @@
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\bin\x64\Debug\CoScProject.exe.config
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\bin\x64\Debug\CoScProject.exe.manifest
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\bin\x64\Debug\CoScProject.application
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\bin\x64\Debug\CoScProject.exe
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\bin\x64\Debug\CoScProject.pdb
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\bin\x64\Debug\Neodynamic.SDK.BarcodeReader.dll
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.Form1.resources
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.Properties.Resources.resources
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.csproj.GenerateResource.Cache
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\RdlCompile.cache
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\RdlCompile.compiled
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.exe.manifest
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.application
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.exe
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.pdb
+C:\Users\sri\Documents\Git Repositories\VedaEnTech\CoScProject\obj\x64\Debug\CoScProject.csprojResolveAssemblyReference.cache
