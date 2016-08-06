@@ -293,13 +293,11 @@ namespace CoScProject {
             
             private global::System.Data.DataColumn columnH;
             
-            private global::System.Data.DataColumn columnW1;
-            
-            private global::System.Data.DataColumn columnH1;
-            
             private global::System.Data.DataColumn columnGuage;
             
             private global::System.Data.DataColumn columnBarcode;
+            
+            private global::System.Data.DataColumn columnArea;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -392,22 +390,6 @@ namespace CoScProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn W1Column {
-                get {
-                    return this.columnW1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn H1Column {
-                get {
-                    return this.columnH1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn GuageColumn {
                 get {
                     return this.columnGuage;
@@ -419,6 +401,14 @@ namespace CoScProject {
             public global::System.Data.DataColumn BarcodeColumn {
                 get {
                     return this.columnBarcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AreaColumn {
+                get {
+                    return this.columnArea;
                 }
             }
             
@@ -459,7 +449,7 @@ namespace CoScProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BarcodesRow AddBarcodesRow(string CustomerName, string ProjectName, string JobNo, string SerialNo, string ItemDescription, string W, string H, string W1, string H1, string Guage, string Barcode) {
+            public BarcodesRow AddBarcodesRow(string CustomerName, string ProjectName, string JobNo, string SerialNo, string ItemDescription, int W, int H, string Guage, string Barcode, string Area) {
                 BarcodesRow rowBarcodesRow = ((BarcodesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CustomerName,
@@ -469,10 +459,9 @@ namespace CoScProject {
                         ItemDescription,
                         W,
                         H,
-                        W1,
-                        H1,
                         Guage,
-                        Barcode};
+                        Barcode,
+                        Area};
                 rowBarcodesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBarcodesRow);
                 return rowBarcodesRow;
@@ -502,10 +491,9 @@ namespace CoScProject {
                 this.columnItemDescription = base.Columns["ItemDescription"];
                 this.columnW = base.Columns["W"];
                 this.columnH = base.Columns["H"];
-                this.columnW1 = base.Columns["W1"];
-                this.columnH1 = base.Columns["H1"];
                 this.columnGuage = base.Columns["Guage"];
                 this.columnBarcode = base.Columns["Barcode"];
+                this.columnArea = base.Columns["Area"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -521,18 +509,16 @@ namespace CoScProject {
                 base.Columns.Add(this.columnSerialNo);
                 this.columnItemDescription = new global::System.Data.DataColumn("ItemDescription", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnItemDescription);
-                this.columnW = new global::System.Data.DataColumn("W", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnW = new global::System.Data.DataColumn("W", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnW);
-                this.columnH = new global::System.Data.DataColumn("H", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnH = new global::System.Data.DataColumn("H", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnH);
-                this.columnW1 = new global::System.Data.DataColumn("W1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnW1);
-                this.columnH1 = new global::System.Data.DataColumn("H1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnH1);
                 this.columnGuage = new global::System.Data.DataColumn("Guage", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGuage);
                 this.columnBarcode = new global::System.Data.DataColumn("Barcode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBarcode);
+                this.columnArea = new global::System.Data.DataColumn("Area", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnArea);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_Barcodes");
                 this.ExtendedProperties.Add("Generator_UserTableName", "Barcodes");
             }
@@ -757,10 +743,10 @@ namespace CoScProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string W {
+            public int W {
                 get {
                     try {
-                        return ((string)(this[this.tableBarcodes.WColumn]));
+                        return ((int)(this[this.tableBarcodes.WColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'W\' in table \'Barcodes\' is DBNull.", e);
@@ -773,10 +759,10 @@ namespace CoScProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string H {
+            public int H {
                 get {
                     try {
-                        return ((string)(this[this.tableBarcodes.HColumn]));
+                        return ((int)(this[this.tableBarcodes.HColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'H\' in table \'Barcodes\' is DBNull.", e);
@@ -784,38 +770,6 @@ namespace CoScProject {
                 }
                 set {
                     this[this.tableBarcodes.HColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string W1 {
-                get {
-                    try {
-                        return ((string)(this[this.tableBarcodes.W1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'W1\' in table \'Barcodes\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBarcodes.W1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string H1 {
-                get {
-                    try {
-                        return ((string)(this[this.tableBarcodes.H1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'H1\' in table \'Barcodes\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBarcodes.H1Column] = value;
                 }
             }
             
@@ -848,6 +802,22 @@ namespace CoScProject {
                 }
                 set {
                     this[this.tableBarcodes.BarcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Area {
+                get {
+                    try {
+                        return ((string)(this[this.tableBarcodes.AreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Area\' in table \'Barcodes\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBarcodes.AreaColumn] = value;
                 }
             }
             
@@ -937,30 +907,6 @@ namespace CoScProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsW1Null() {
-                return this.IsNull(this.tableBarcodes.W1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetW1Null() {
-                this[this.tableBarcodes.W1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsH1Null() {
-                return this.IsNull(this.tableBarcodes.H1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetH1Null() {
-                this[this.tableBarcodes.H1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGuageNull() {
                 return this.IsNull(this.tableBarcodes.GuageColumn);
             }
@@ -981,6 +927,18 @@ namespace CoScProject {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBarcodeNull() {
                 this[this.tableBarcodes.BarcodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAreaNull() {
+                return this.IsNull(this.tableBarcodes.AreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAreaNull() {
+                this[this.tableBarcodes.AreaColumn] = global::System.Convert.DBNull;
             }
         }
         

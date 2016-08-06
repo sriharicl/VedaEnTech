@@ -147,7 +147,7 @@ namespace CoScProject
                 //load data into the gridview
                 if (barcodeID != string.Empty || gdvProductdetails.Rows.Count == 0)
                 {
-
+                    
                     SqlConnection connProductDetails = new SqlConnection(coscConnectionString);
                     connProductDetails.Open();
                     SqlCommand commProductDetails = new SqlCommand("getProductDetails", connProductDetails);
@@ -159,8 +159,8 @@ namespace CoScProject
                     int isDataExists = Convert.ToInt32(commProductDetails.Parameters["@isDataExists"].Value);
                     if (isDataExists == 1)
                     {
+                        tableFillSpecificDetails.Clear();
                         incrementNoOfScans = true;
-
                         SqlDataAdapter dataAdapterFillSpecificDetails = new SqlDataAdapter();
                         dataAdapterFillSpecificDetails.SelectCommand = commProductDetails;
                         dataAdapterFillSpecificDetails.Fill(tableFillSpecificDetails);
@@ -199,8 +199,6 @@ namespace CoScProject
                                 gdvProductdetails.Columns.Add("unitquantity", "UnitQuantity");
                                 gdvProductdetails.Columns.Add("totalquantity", "TotalQuantity");
                                 gdvProductdetails.Columns.Add("inventory", "inventory");
-
-
 
                                 tableforReports.Columns.Add("reportnumber", typeof(String));
                                 tableforReports.Columns.Add("vehiclenumber", typeof(String));
@@ -564,6 +562,12 @@ namespace CoScProject
         //this will enable the job dropdown.
         private void btnChangeJob_Click(object sender, EventArgs e)
         {
+            firstScan = 0;
+            tableforReports.Clear();
+            gdvProductdetails.Columns.Clear();
+            tableforReports.Columns.Clear();
+            incrementNoOfScans = false;
+            noOfScans = 0;
             cmbJobNo.Enabled = true;
             txtBarcodeId.Text = "";
             txtVehicleNo.Text = "";
@@ -636,14 +640,14 @@ namespace CoScProject
                             manipulatedDatarow["JobNO"] = dr["JobNO"];
                             manipulatedDatarow["SerialNO"] = dr["SerialNO"];
                             manipulatedDatarow["ItemDescription"] = dr["ItemDescription"];
-                            manipulatedDatarow["W"] = dr["W"];
-                            manipulatedDatarow["H"] = dr["H"];
-                            manipulatedDatarow["W1"] = dr["W1"];
-                            manipulatedDatarow["H1"] = dr["H1"];
+                            manipulatedDatarow["W"] = Convert.ToInt32(dr["W"]);
+                            manipulatedDatarow["H"] = Convert.ToInt32(dr["H"]);
+                          //  manipulatedDatarow["W1"] = dr["W1"];
+                            //manipulatedDatarow["H1"] = dr["H1"];
                             manipulatedDatarow["Guage"] = dr["Guage"];
                             //manipulatedDatarow["Barcode"] = "*";
                             manipulatedDatarow["Barcode"] = "*"+Convert.ToInt32(dr["Barcode"])+"*";
-                            
+                            manipulatedDatarow["Area"] = dr["Area"];
                             manipulatedDataTable.Rows.Add(manipulatedDatarow);
 
                         }
@@ -656,14 +660,14 @@ namespace CoScProject
                         manipulatedDatarow1["JobNO"] = dr["JobNO"];
                         manipulatedDatarow1["SerialNO"] = dr["SerialNO"];
                         manipulatedDatarow1["ItemDescription"] = dr["ItemDescription"];
-                        manipulatedDatarow1["W"] = dr["W"];
-                        manipulatedDatarow1["H"] = dr["H"];
-                        manipulatedDatarow1["W1"] = dr["W1"];
-                        manipulatedDatarow1["H1"] = dr["H1"];
+                        manipulatedDatarow1["W"] = Convert.ToInt32(dr["W"]);
+                        manipulatedDatarow1["H"] = Convert.ToInt32(dr["H"]);
+                       // manipulatedDatarow1["W1"] = dr["W1"];
+                        //manipulatedDatarow1["H1"] = dr["H1"];
                         manipulatedDatarow1["Guage"] = dr["Guage"];
                         
                         manipulatedDatarow1["Barcode"] = "*"+dr["Barcode"]+"*";
-                        
+                        manipulatedDatarow1["Area"] = dr["Area"];
                         manipulatedDataTable.Rows.Add(manipulatedDatarow1);
                     }
                 }
