@@ -159,7 +159,7 @@ namespace CoScProject
                     int isDataExists = Convert.ToInt32(commProductDetails.Parameters["@isDataExists"].Value);
                     if (isDataExists == 1)
                     {
-                        tableFillSpecificDetails.Clear();
+                        //tableFillSpecificDetails.Clear();
                         incrementNoOfScans = true;
                         SqlDataAdapter dataAdapterFillSpecificDetails = new SqlDataAdapter();
                         dataAdapterFillSpecificDetails.SelectCommand = commProductDetails;
@@ -179,7 +179,7 @@ namespace CoScProject
                         //}
                         else
                         {
-                            if (firstScan < 2)
+                            if (firstScan < 2 || gdvProductdetails.RowCount ==0)
                             {
                                 gdvProductdetails.Columns.Add("barcodeid", "Id");
                                 gdvProductdetails.Columns.Add("jobno", "Job");
@@ -225,11 +225,12 @@ namespace CoScProject
 
                             }
 
-                            DataRow dr = tableFillSpecificDetails.Rows[noOfScans];
+                            
                             if (oldBarcodeID != "" && barcodeID != oldBarcodeID || !dictionary.ContainsKey(Convert.ToInt32(barcodeID)))
                             {
                                 if (!dictionary.ContainsKey(Convert.ToInt32(barcodeID)))
                                 {
+                                    DataRow dr = tableFillSpecificDetails.Rows[noOfScans];
                                     dictionary.Add(Convert.ToInt32(barcodeID), rowC);
                                     rowC = rowC + 1;
                                     {
@@ -326,14 +327,14 @@ namespace CoScProject
                     {
                         incrementNoOfScans = false;
                     }
-                    if (incrementNoOfScans == true)
-                    {
-                        noOfScans += 1;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Current job in progress");
-                    }
+                        if (incrementNoOfScans == true)
+                        {
+                             noOfScans += 1;
+                        }
+                        else
+                         {
+                            MessageBox.Show("Current job in progress");
+                        }
                     
                 }
                 else
@@ -496,7 +497,7 @@ namespace CoScProject
                 rp[2] = new ReportParameter("reportNumber", reportNumber);
                 rp[3] = new ReportParameter("reportDate", reportDate);
                 //"E:\\Projects\\CoScProject\\CoScProject\\VedaReport.rdlc";
-                reportViewerDispatched.LocalReport.ReportPath = "../../VedaReport.rdlc";
+                reportViewerDispatched.LocalReport.ReportPath = "../../../VedaReport.rdlc";
                 reportViewerDispatched.LocalReport.SetParameters(rp);
                 reportViewerDispatched.LocalReport.DataSources.Add(dataSource);
                 //create pdf and excel 
