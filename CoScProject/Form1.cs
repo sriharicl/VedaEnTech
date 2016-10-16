@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using CoScProject.COSCDataSetTableAdapters;
 using CoScProject.DataSetRptsTableAdapters;
 using System.IO;
+using System.Configuration;
 namespace CoScProject
 {
     public partial class Form1 : Form
@@ -371,6 +372,8 @@ namespace CoScProject
                             tableforReports.Rows[rowNumber][15] = quant.ToString();
 
                         }
+                        else
+                            MessageBox.Show("Quantity exceeded","Scan Quantity Vs Inventory",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -742,6 +745,42 @@ namespace CoScProject
                         FillData(barcodeID);
                 }
 
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //gdvDetailsInventory
+                Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
+                objexcelapp.Application.Workbooks.Add(Type.Missing);
+                objexcelapp.Columns.ColumnWidth = 25;
+                for (int i = 1; i < gdvDetailsInventory.Columns.Count + 1; i++)
+                {
+                    objexcelapp.Cells[1, i] = gdvDetailsInventory.Columns[i - 1].HeaderText;
+                }
+                /*For storing Each row and column value to excel sheet*/
+                for (int i = 0; i < gdvDetailsInventory.Rows.Count; i++)
+                {
+                    for (int j = 0; j < gdvDetailsInventory.Columns.Count; j++)
+                    {
+                        if (gdvDetailsInventory.Rows[i].Cells[j].Value != null)
+                        {
+                            objexcelapp.Cells[i + 2, j + 1] = gdvDetailsInventory.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+                }
+
+
+                MessageBox.Show("Your excel file exported successfully at E:\\" + cmbJobNoInventory.Text + "Inventory" + ".xlsx");
+                objexcelapp.ActiveWorkbook.SaveCopyAs("E:\\" + cmbJobNoInventory.Text + "Inventory" + ".xlsx");
+                objexcelapp.ActiveWorkbook.Saved = true;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.cOSCREPORTSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cOSCDataSet = new CoScProject.COSCDataSet();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -74,6 +74,7 @@
             this.COSCREPORTSTableAdapter = new CoScProject.DataSetRptsTableAdapters.COSCREPORTSTableAdapter();
             this.cOSCREPORTSTableAdapter1 = new CoScProject.COSCDataSetTableAdapters.COSCREPORTSTableAdapter();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cOSCREPORTSBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cOSCDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -337,7 +338,7 @@
             this.gdvProductdetails.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.gdvProductdetails.Location = new System.Drawing.Point(17, 129);
             this.gdvProductdetails.Name = "gdvProductdetails";
-            this.gdvProductdetails.Size = new System.Drawing.Size(1214, 200);
+            this.gdvProductdetails.Size = new System.Drawing.Size(1214, 350);
             this.gdvProductdetails.TabIndex = 13;
             // 
             // tabPage3
@@ -355,12 +356,13 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.DarkGray;
+            this.groupBox5.Controls.Add(this.button2);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.txtBarcodeIDInv);
             this.groupBox5.Controls.Add(this.btnFetchInvnetory);
             this.groupBox5.Location = new System.Drawing.Point(351, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 100);
+            this.groupBox5.Size = new System.Drawing.Size(220, 100);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Inventory";
@@ -383,7 +385,7 @@
             // 
             // btnFetchInvnetory
             // 
-            this.btnFetchInvnetory.Location = new System.Drawing.Point(58, 60);
+            this.btnFetchInvnetory.Location = new System.Drawing.Point(9, 60);
             this.btnFetchInvnetory.Name = "btnFetchInvnetory";
             this.btnFetchInvnetory.Size = new System.Drawing.Size(115, 23);
             this.btnFetchInvnetory.TabIndex = 5;
@@ -436,7 +438,7 @@
             this.gdvDetailsInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdvDetailsInventory.Location = new System.Drawing.Point(33, 128);
             this.gdvDetailsInventory.Name = "gdvDetailsInventory";
-            this.gdvDetailsInventory.Size = new System.Drawing.Size(821, 150);
+            this.gdvDetailsInventory.Size = new System.Drawing.Size(1018, 343);
             this.gdvDetailsInventory.TabIndex = 6;
             // 
             // tabPage4
@@ -462,9 +464,9 @@
             // 
             // reportViewerDispatched
             // 
-            reportDataSource3.Name = "DataSet1";
-            reportDataSource3.Value = this.cOSCREPORTSBindingSource1;
-            this.reportViewerDispatched.LocalReport.DataSources.Add(reportDataSource3);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.cOSCREPORTSBindingSource1;
+            this.reportViewerDispatched.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewerDispatched.LocalReport.ReportEmbeddedResource = "CoScProject.VedaReport.rdlc";
             this.reportViewerDispatched.LocalReport.ReportPath = "VedaReport.rdlc";
             this.reportViewerDispatched.Location = new System.Drawing.Point(33, 23);
@@ -494,11 +496,21 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(130, 60);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Export fetch";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 517);
+            this.ClientSize = new System.Drawing.Size(1049, 517);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "COSC";
@@ -579,6 +591,7 @@
 
         private System.Windows.Forms.Button btnClearReport;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button button2;
 
     }
 }
